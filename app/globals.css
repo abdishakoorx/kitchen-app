@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -67,14 +69,14 @@
   --border: #E5E7EB;      /* light gray border */
   --input: #E5E7EB;       /* light gray input */
   --ring: #E07A5F;        /* terracotta ring */
-  
+
   /* Chart colors */
   --chart-1: #E07A5F;     /* terracotta */
   --chart-2: #81B29A;     /* sage */
   --chart-3: #F2CC8F;     /* yellow */
   --chart-4: #3D405B;     /* navy */
   --chart-5: #A7A9BE;     /* light navy/gray */
-  
+
   /* Sidebar - matching main theme */
   --sidebar: #F2F4F3;     /* cream */
   --sidebar-foreground: #3D405B; /* navy */
@@ -109,14 +111,14 @@
   --border: #6B7280;         /* darker gray border for dark mode */
   --input: #4D5171;          /* lighter navy */
   --ring: #E07A5F;           /* terracotta */
-  
+
   /* Chart colors for dark mode */
   --chart-1: #E07A5F;        /* terracotta */
   --chart-2: #81B29A;        /* sage */
   --chart-3: #F2CC8F;        /* yellow */
   --chart-4: #F2F4F3;        /* cream */
   --chart-5: #A7A9BE;        /* light navy/gray */
-  
+
   /* Sidebar - matching dark theme */
   --sidebar: #3D405B;        /* navy */
   --sidebar-foreground: #F2F4F3; /* cream */
@@ -127,8 +129,6 @@
   --sidebar-border: #6B7280;  /* darker gray border */
   --sidebar-ring: #E07A5F;    /* terracotta */
 }
-
-
 
 @layer base {
   * {
