@@ -10,17 +10,18 @@ import {
   Refrigerator,
   CalendarDays,
 } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
   const navItems = [
     { label: "Smart Cooking", href: "/", icon: CookingPot },
     { label: "Pantry Management", href: "/", icon: Refrigerator },
     { label: "Nutrition", href: "/", icon: UtensilsCrossed },
     { label: "Community", href: "/", icon: CalendarDays },
   ];
-  
+
   return (
     <header className="bg-background/70 backdrop-blur-lg py-4 z-10 px-8">
       <div className="">
@@ -29,7 +30,7 @@ const Header = () => {
             <ChefHat className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold">Bottleyx</span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-10">
             {navItems.map(({ href, label, icon: Icon }) => (
@@ -43,12 +44,25 @@ const Header = () => {
               </a>
             ))}
           </nav>
-          
+
           {/* Desktop CTA Button */}
           <div className="hidden lg:block">
-            <Button className="kitchen-btn">Get Started Free</Button>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button className="cursor-pointer">Get Started Free</Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-10 h-10",
+                  },
+                }}
+              />
+            </SignedIn>
           </div>
-          
+
           {/* Mobile Menu Toggle */}
           <div className="lg:hidden">
             <Button
@@ -65,7 +79,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
       <div
         className={`lg:hidden shadow-lg transition-all duration-300 overflow-hidden ${
