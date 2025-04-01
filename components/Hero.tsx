@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <div className="relative min-h-[35vh] flex items-center overflow-hidden">
       {/* Background with overlay */}
       <div className="relative min-h-[500px] w-full bg-gray-200 overflow-hidden">
         {/* Grid background */}
