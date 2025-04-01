@@ -11,7 +11,7 @@ const FeatureCard = ({
   description: string;
 }) => {
   return (
-    <div className="relative p-6 rounded-xl backdrop-blur-md bg-white/30 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105 overflow-hidden group">
+    <div className="relative p-6 rounded-xl backdrop-blur-md bg-white/30 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group">
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-[url('/marble-texture.jpg')] opacity-5 mix-blend-overlay"></div>
       

@@ -1,12 +1,15 @@
-import { ChefHat, Facebook, Instagram, Twitter, Mail } from 'lucide-react';
+import { ChefHat, Mail } from 'lucide-react';
 import Link from 'next/link';
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: "/", label: "Facebook" },
-    { icon: Instagram, href: "/", label: "Instagram" },
-    { icon: Twitter, href: "/", label: "Twitter" },
-    { icon: Mail, href: "/", label: "Email" }
+    { icon: FaFacebook, href: "/", label: "Facebook" },
+    { icon: FaInstagram, href: "/", label: "Instagram" },
+    { icon: FaTwitter, href: "/", label: "Twitter" },
+    { icon: Mail, href: "/", label: "Email" },
+    { icon: FaTiktok, href: "/", label: "Tiktok" },
+    { icon: FaYoutube, href: "/", label: "Youtube" }
   ];
 
   const footerLinks = [
@@ -40,41 +43,38 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-tertiary text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <ChefHat className="h-6 w-6 text-kitchen-terracotta" />
-              <span className="text-xl font-bold">Bottleyx</span>
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="md:col-span-1 pr-8">
+            <div className="flex items-center mb-4">
+              <ChefHat className="h-8 w-8 mr-3" />
+              <span className="text-xl font-bold mr-4">Bottleyx</span>
             </div>
-            <p className="text-sm text-white/70 mb-4">
+            <p className="text-gray-400 mb-6 pr-8">
               Your smart kitchen companion, powered by AI to make cooking enjoyable and efficient.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-4 mt-8">
               {socialLinks.map((social) => (
                 <Link 
-                  key={social.label}
-                  href={social.href} 
-                  className="text-white/70 hover:text-kitchen-terracotta transition-colors"
+                  key={social.label} 
+                  href={social.href}
+                  className="text-gray-400 hover:text-white transition-colors"
                   aria-label={social.label}
                 >
-                  <social.icon className="h-5 w-5" />
+                  <social.icon className="h-6 w-6" />
                 </Link>
               ))}
             </div>
           </div>
-          
+
           {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-bold text-lg mb-4">{section.title}</h3>
-              <ul className="space-y-2 text-white/70">
+            <div key={section.title} className="mt-8 md:mt-0">
+              <h3 className="text-lg font-semibold mb-4">{section.title}</h3>
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link 
-                      href={link.href} 
-                      className="hover:text-kitchen-terracotta transition-colors"
-                    >
+                    <Link href={link.href} className="text-gray-400 hover:text-white transition-colors">
                       {link.label}
                     </Link>
                   </li>
@@ -83,9 +83,8 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        
-        <div className="border-t border-white/10 mt-12 pt-8 text-sm text-white/50 text-center">
-          &copy; {new Date().getFullYear()} Bottleyx. All rights reserved.
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          © {new Date().getFullYear()} Bottleyx. All rights reserved.
         </div>
       </div>
     </footer>
