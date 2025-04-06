@@ -1,55 +1,57 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+"use client";
 
-export default function Page() {
+import { useEffect } from "react";
+import { useHeader } from "../../context/header-context";
+import React from "react";
+import { Card, CardContent } from '@/components/ui/card';
+import { 
+  ChefHat, 
+  ShoppingBag, 
+  Users,
+  DollarSign,
+} from 'lucide-react';
+
+
+export default function DashboardPage() {
+  const { setHeader } = useHeader();
+  
+  useEffect(() => {
+    setHeader?.("Dashboard Overview", "Monitor your kitchen activities at a glance");
+    // Clean up on unmount
+    return () => setHeader?.();
+  }, [setHeader]);
+
+  // Mock data for dashboard
+  const quickStats = [
+    { title: "Recipes", value: "34", icon: ChefHat, change: "+3", color: "bg-blue-100" },
+    { title: "Pantry Items", value: "87", icon: ShoppingBag, change: "-5", color: "bg-green-100" },
+    { title: "Budget Used", value: "68%", icon: DollarSign, change: "+2%", color: "bg-yellow-100" },
+    { title: "Community Points", value: "215", icon: Users, change: "+18", color: "bg-purple-100" },
+  ];
+
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
-  )
-}
+    <div className="space-y-6">
+      {/* Quick Stats Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {quickStats.map((stat, index) => (
+          <Card key={index}>
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className={`${stat.color} p-3 rounded-lg`}>
+                <stat.icon className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-500">{stat.title}</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-2xl font-bold">{stat.value}</p>
+                  <span className={`text-xs ${stat.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                    {stat.change}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+};
