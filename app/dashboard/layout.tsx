@@ -22,7 +22,7 @@ export default function DashboardLayout({
         <SidebarInset className="border-b">
           <header className="flex h-16 shrink-0 items-center gap-2">
             <div className="flex items-center gap-2 px-4 w-full">
-              <SidebarTrigger className="-ml-1 text-gray-800" />
+              <SidebarTrigger className="-ml-1 text-gray-800 cursor-pointer" />
               <Separator
                 orientation="vertical"
                 className="mr-2 data-[orientation=vertical]:h-4"

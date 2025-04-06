@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   ChefHat,
+  Flame,
   LifeBuoy,
   PieChart,
   Send,
@@ -28,25 +29,25 @@ const data = {
   navMain: [
     {
       title: "Smart Cooking",
-      url: "#",
-      icon: ChefHat,
+      url: "/dashboard/smart-cooking",
+      icon: Flame,
       isActive: true,
       items: [
         {
           title: "Recipe Builder",
-          url: "#",
+          url: "/dashboard/smart-cooking/recipe-builder",
         },
         {
           title: "Meal Planning",
-          url: "#",
+          url: "/dashboard/smart-cooking/meal-planning",
         },
         {
           title: "Shopping List",
-          url: "#",
+          url: "/dashboard/smart-cooking/shopping-list",
         },
         {
           title: "Favorites",
-          url: "#",
+          url: "/dashboard/smart-cooking/favorites",
         },
       ],
     },
