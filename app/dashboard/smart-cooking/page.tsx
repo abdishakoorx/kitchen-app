@@ -10,7 +10,7 @@ const CookingGuide = () => {
   useEffect(() => {
     setHeader?.(
       "Smart Cooking",
-      "Your all-in-one smart cooking assistant and meal planner."
+      "Your all-in-one smart cooking assistant"
     );
     // Clean up on unmount
     return () => setHeader?.();
