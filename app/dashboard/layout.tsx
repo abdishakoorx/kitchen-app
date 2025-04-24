@@ -8,7 +8,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { HeaderSection } from "@/components/custom/header-section";
-import { HeaderProvider } from "../../context/header-context";
+import { HeaderProvider } from "../../contexts/header-context";
 
 export default function DashboardLayout({
   children,

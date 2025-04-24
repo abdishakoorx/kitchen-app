@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import { ShoppingCart, Plus, Check } from "lucide-react";
 
 const ShoppingList = () => {

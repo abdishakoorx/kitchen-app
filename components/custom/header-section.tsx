@@ -1,6 +1,6 @@
 
 "use client";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import React from "react";
 import { PageHeader } from "./page-header";
 

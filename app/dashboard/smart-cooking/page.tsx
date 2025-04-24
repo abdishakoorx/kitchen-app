@@ -1,6 +1,6 @@
 "use client";
 import FeatureCard from "@/components/custom/feature-card";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import { BookOpen, Calendar, ShoppingCart, Heart, ChefHat } from "lucide-react";
 import { useEffect } from "react";
 

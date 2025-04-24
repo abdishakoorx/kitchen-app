@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useHeader } from "../../context/header-context";
+import { useHeader } from "../../contexts/header-context";
 import React from "react";
 import { Card, CardContent } from '@/components/ui/card';
 import { 
