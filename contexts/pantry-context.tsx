@@ -39,7 +39,7 @@ const initialState: PantryState = {
 // Create context
 const PantryContext = createContext<{
   state: PantryState;
-  addItem: (item: Omit<PantryItem, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  addItem: (item: Omit<PantryItem, 'id' | 'createdAt' | 'updatedAt' | 'tags'> & { tags?: string[] }) => void;
   updateItem: (item: PantryItem) => void;
   removeItem: (id: string) => void;
 } | undefined>(undefined);
@@ -108,7 +108,7 @@ export function PantryProvider({ children }: { children: React.ReactNode }) {
   }, [state.items]);
 
   // Action functions
-  const addItem = (item: Omit<PantryItem, 'id' | 'createdAt' | 'updatedAt'>) => {
+  const addItem = (item: Omit<PantryItem, 'id' | 'createdAt' | 'updatedAt' | 'tags'> & { tags?: string[] }) => {
     const now = new Date().toISOString();
     const newItem: PantryItem = {
       ...item,
@@ -132,8 +132,16 @@ export function PantryProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'REMOVE_ITEM', payload: id });
   };
 
+  // Create the context value
+  const contextValue = {
+    state,
+    addItem,
+    updateItem,
+    removeItem,
+  };
+
   return (
-    <PantryContext.Provider value={{ state, addItem, updateItem, removeItem }}>
+    <PantryContext.Provider value={contextValue}>
       {children}
     </PantryContext.Provider>
   );
