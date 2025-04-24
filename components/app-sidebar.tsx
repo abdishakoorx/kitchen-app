@@ -53,24 +53,24 @@ const data = {
     },
     {
       title: "Pantry Manager",
-      url: "#",
+      url: "/dashboard/pantry",
       icon: ShoppingBag,
       items: [
         {
-          title: "Inventory",
-          url: "#",
+          title: "Dry Goods",
+          url: "/dashboard/pantry/dry-goods",
         },
         {
-          title: "Expiration Tracker",
-          url: "#",
+          title: "Refrigerated",
+          url: "/dashboard/pantry/refrigerated",
         },
         {
-          title: "Restock Assistant",
-          url: "#",
+          title: "Freezer",
+          url: "/dashboard/pantry/freezer",
         },
         {
-          title: "Usage Analytics",
-          url: "#",
+          title: "Spices",
+          url: "/dashboard/pantry/spices",
         },
       ],
     },

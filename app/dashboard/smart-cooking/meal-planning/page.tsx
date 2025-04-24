@@ -1,5 +1,5 @@
 "use client";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import { Button } from "@/components/ui/button";
 import {
   Card,

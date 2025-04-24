@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import { BookOpen, Plus } from "lucide-react";
 
 const RecipeBuilder = () => {
