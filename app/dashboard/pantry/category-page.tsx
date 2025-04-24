@@ -116,7 +116,7 @@ export function CategoryPage({ categorySlug }: CategoryPageProps) {
   return (
     <div className="container">
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-4">          
+        <div className="flex justify-end items-end">          
           <Dialog open={dialogOpen} onOpenChange={(open) => {
             setDialogOpen(open);
             if (!open) setEditItem(null);

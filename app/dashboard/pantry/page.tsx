@@ -7,13 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AddItemForm, PantryItemFormValues } from "@/components/pantry/pantry-form";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, Settings } from "lucide-react";
 import { useHeader } from "@/contexts/header-context";
+import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
 
 export default function PantryDashboard() {
   const { state, addItem, removeItem } = usePantry();
   const [searchQuery, setSearchQuery] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
+  const [expiringDaysThreshold, setExpiringDaysThreshold] = useState(7);
 
   const { setHeader } = useHeader();
   
@@ -66,7 +70,7 @@ export default function PantryDashboard() {
     const expiryDate = new Date(item.expirationDate);
     const today = new Date();
     const diffDays = Math.ceil((expiryDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-    return diffDays >= 0 && diffDays <= 7;
+    return diffDays >= 0 && diffDays <= expiringDaysThreshold;
   }).length;
   const expired = state.items.filter(item => {
     if (!item.expirationDate) return false;
@@ -75,10 +79,48 @@ export default function PantryDashboard() {
     return expiryDate < today;
   }).length;
 
+  // Update expiring days threshold
+  const handleThresholdChange = (value: number[]) => {
+    setExpiringDaysThreshold(value[0]);
+  };
+
   return (
     <div className="container">
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-4">          
+        <div className="flex justify-between items-center pt-4">
+          <div className="flex items-center">
+            <Dialog open={settingsDialogOpen} onOpenChange={setSettingsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Settings className="h-4 w-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Pantry Settings</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="expiring-days">
+                      Days until an item is considered &quot;Expiring Soon&quot;: {expiringDaysThreshold}
+                    </Label>
+                    <Slider
+                      id="expiring-days"
+                      min={1}
+                      max={30}
+                      step={1}
+                      value={[expiringDaysThreshold]}
+                      onValueChange={handleThresholdChange}
+                    />
+                    <p className="text-sm text-muted-foreground">
+                      Items expiring within {expiringDaysThreshold} day{expiringDaysThreshold !== 1 ? 's' : ''} will appear in the &quot;Expiring Soon&quot; category.
+                    </p>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+          
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button>
@@ -97,15 +139,17 @@ export default function PantryDashboard() {
 
         {/* Stats overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-secondary p-4 rounded-lg">
+          <div className="bg-secondary/20 p-4 rounded-lg">
             <h3 className="text-sm font-medium text-muted-foreground">Total Items</h3>
             <p className="text-3xl font-bold">{totalItems}</p>
           </div>
-          <div className="bg-secondary p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground">Expiring Soon</h3>
+          <div className="bg-secondary/20 p-4 rounded-lg">
+            <h3 className="text-sm font-medium text-muted-foreground">
+              Expiring Soon ({expiringDaysThreshold} day{expiringDaysThreshold !== 1 ? 's' : ''})
+            </h3>
             <p className="text-3xl font-bold text-orange-500">{expiringSoon}</p>
           </div>
-          <div className="bg-secondary p-4 rounded-lg">
+          <div className="bg-secondary/20 p-4 rounded-lg">
             <h3 className="text-sm font-medium text-muted-foreground">Expired</h3>
             <p className="text-3xl font-bold text-destructive">{expired}</p>
           </div>
