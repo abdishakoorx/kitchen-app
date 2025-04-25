@@ -76,24 +76,24 @@ const data = {
     },
     {
       title: "Nutrition & Budget",
-      url: "#",
+      url: "/dashboard/nutrition-budget",
       icon: PieChart,
       items: [
         {
           title: "Macro Calculator",
-          url: "#",
+          url: "/dashboard/nutrition-budget/macro-calculator",
         },
         {
           title: "Cost Analysis",
-          url: "#",
+          url: "/dashboard/nutrition-budget/cost-analysis",
         },
         {
           title: "Budget Planner",
-          url: "#",
+          url: "/dashboard/nutrition-budget/budget-planner",
         },
         {
           title: "Nutrition Reports",
-          url: "#",
+          url: "/dashboard/nutrition-budget/nutrition-reports",
         },
       ],
     },
