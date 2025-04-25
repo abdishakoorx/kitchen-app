@@ -92,8 +92,8 @@ const data = {
           url: "/dashboard/nutrition-budget/budget-planner",
         },
         {
-          title: "Nutrition Reports",
-          url: "/dashboard/nutrition-budget/nutrition-reports",
+          title: "Nutrition Report",
+          url: "/dashboard/nutrition-budget/nutrition-report",
         },
       ],
     },
