@@ -1,6 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { useHeader } from '@/contexts/header-context';
+import { Plus } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 // Mock data for budget planning
 const mockBudgetData = {
@@ -25,7 +28,14 @@ const mockBudgetData = {
 };
 
 export default function BudgetPlannerPage() {
-  const [budgetData, setBudgetData] = useState(mockBudgetData);
+  const [budgetData] = useState(mockBudgetData);
+  const { setHeader } = useHeader();
+  
+  useEffect(() => {
+    setHeader?.("Budget Planner", "Plan your food budget and track spending over time.");
+    // Clean up on unmount
+    return () => setHeader?.();
+  }, [setHeader]);
   
   const calculatePercentage = (spent: number, budget: number) => {
     return Math.min(Math.round((spent / budget) * 100), 100);
@@ -39,10 +49,8 @@ export default function BudgetPlannerPage() {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-6">Budget Planner</h2>
-      
-      <div className="bg-white p-6 rounded-lg shadow mb-8">
+    <div className="container mx-auto px-4 py-8">      
+      <div className="p-6 rounded-lg shadow mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <h3 className="text-lg font-medium mb-2">Monthly Budget</h3>
@@ -75,7 +83,7 @@ export default function BudgetPlannerPage() {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-4">Budget by Category</h3>
           
           <div className="space-y-4">
@@ -96,13 +104,13 @@ export default function BudgetPlannerPage() {
           </div>
           
           <div className="mt-6">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <Button className="px-4 py-2">
               Adjust Categories
-            </button>
+            </Button>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-4">Recent Transactions</h3>
           
           <div className="overflow-y-auto max-h-64">
@@ -127,12 +135,12 @@ export default function BudgetPlannerPage() {
           </div>
           
           <div className="mt-4 text-center">
-            <button className="text-blue-600 hover:underline">Add Transaction</button>
+            <Button variant={'link'} className="px-4 py-2"><Plus /> Add Transaction</Button>
           </div>
         </div>
       </div>
       
-      <div className="bg-white p-6 rounded-lg shadow">
+      <div className="p-6 rounded-lg shadow">
         <h3 className="text-lg font-medium mb-4">Budget Tips</h3>
         
         <ul className="space-y-2">
@@ -163,9 +171,9 @@ export default function BudgetPlannerPage() {
         </ul>
         
         <div className="mt-6">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+          <Button className="px-4 py-2">
             Generate Budget Report
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { useHeader } from '@/contexts/header-context';
+import { useEffect, useState } from 'react';
 
 // Mock data for nutrition tracking
 const mockNutritionData = {
@@ -29,18 +31,23 @@ const mockNutritionData = {
 };
 
 export default function NutritionTrackerPage() {
-  const [nutritionData, setNutritionData] = useState(mockNutritionData);
+  const [nutritionData] = useState(mockNutritionData);
+  const { setHeader } = useHeader();
+  
+  useEffect(() => {
+    setHeader?.("Nutrition Report", "Track your nutritional intake and get personalized recommendations.");
+    // Clean up on unmount
+    return () => setHeader?.();
+  }, [setHeader]);
   
   const calculatePercentage = (current: number, goal: number) => {
     return Math.min(Math.round((current / goal) * 100), 100);
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-6">Nutrition Tracker</h2>
-      
+    <div className="container mx-auto px-4 py-8">      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg border">
           <h3 className="text-lg font-medium mb-4">Daily Summary</h3>
           
           <div className="space-y-4">
@@ -98,7 +105,7 @@ export default function NutritionTrackerPage() {
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg border">
           <h3 className="text-lg font-medium mb-4">Nutrition Insights</h3>
           <ul className="space-y-2">
             <li className="flex items-center text-green-600">
@@ -128,14 +135,14 @@ export default function NutritionTrackerPage() {
           </ul>
           
           <div className="mt-6">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <Button className="text-white px-4 py-2 rounded-md">
               Set Nutrition Goals
-            </button>
+            </Button>
           </div>
         </div>
       </div>
       
-      <div className="bg-white p-6 rounded-lg shadow mb-8">
+      <div className="p-6 rounded-lg shadow mb-8">
         <h3 className="text-lg font-medium mb-4">Recent Meals</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
