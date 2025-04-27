@@ -99,24 +99,24 @@ const data = {
     },
     {
       title: "Community",
-      url: "#",
+      url: "/dashboard/community",
       icon: Users,
       items: [
         {
           title: "Cooking Challenges",
-          url: "#",
+          url: "/dashboard/community/cooking-challenges",
         },
         {
           title: "Discussion Forum",
-          url: "#",
+          url: "/dashboard/community/discussion-forum",
         },
         {
           title: "Expert Tips",
-          url: "#",
+          url: "/dashboard/community/expert-tips",
         },
         {
           title: "Learning Center",
-          url: "#",
+          url: "/dashboard/community/learning-center",
         },
       ],
     },
