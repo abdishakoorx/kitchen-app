@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Heart, BookOpen, Calendar } from "lucide-react";
-import { useHeader } from "@/context/header-context";
+import { useHeader } from "@/contexts/header-context";
 import Link from "next/link";
 
 const Favorites = () => {

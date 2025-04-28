@@ -53,70 +53,70 @@ const data = {
     },
     {
       title: "Pantry Manager",
-      url: "#",
+      url: "/dashboard/pantry",
       icon: ShoppingBag,
       items: [
         {
-          title: "Inventory",
-          url: "#",
+          title: "Dry Goods",
+          url: "/dashboard/pantry/dry-goods",
         },
         {
-          title: "Expiration Tracker",
-          url: "#",
+          title: "Refrigerated",
+          url: "/dashboard/pantry/refrigerated",
         },
         {
-          title: "Restock Assistant",
-          url: "#",
+          title: "Freezer",
+          url: "/dashboard/pantry/freezer",
         },
         {
-          title: "Usage Analytics",
-          url: "#",
+          title: "Spices",
+          url: "/dashboard/pantry/spices",
         },
       ],
     },
     {
       title: "Nutrition & Budget",
-      url: "#",
+      url: "/dashboard/nutrition-budget",
       icon: PieChart,
       items: [
         {
           title: "Macro Calculator",
-          url: "#",
+          url: "/dashboard/nutrition-budget/macro-calculator",
         },
         {
           title: "Cost Analysis",
-          url: "#",
+          url: "/dashboard/nutrition-budget/cost-analysis",
         },
         {
           title: "Budget Planner",
-          url: "#",
+          url: "/dashboard/nutrition-budget/budget-planner",
         },
         {
-          title: "Nutrition Reports",
-          url: "#",
+          title: "Nutrition Report",
+          url: "/dashboard/nutrition-budget/nutrition-report",
         },
       ],
     },
     {
       title: "Community",
-      url: "#",
+      url: "/dashboard/community",
       icon: Users,
       items: [
         {
           title: "Cooking Challenges",
-          url: "#",
+          url: "/dashboard/community/cooking-challenges",
         },
         {
           title: "Discussion Forum",
-          url: "#",
+          url: "/dashboard/community/discussion-forum",
         },
         {
           title: "Expert Tips",
-          url: "#",
+          url: "/dashboard/community/expert-tips",
         },
         {
           title: "Learning Center",
-          url: "#",
+          url: "/dashboard/community/learning-center",
         },
       ],
     },
