@@ -274,7 +274,7 @@ export default function CookingChallengesPage() {
 
       {/* Featured Challenge */}
       <div className="bg-gradient-to-r from-secondary to-secondary/70 rounded-lg shadow-lg mb-8 overflow-hidden">
-        <div className="md:flex">
+        <div className="md:flex md:items-center">
           <div className="md:w-3/5 p-6 text-white">
             <div className="mb-2 inline-block bg-yellow-500 text-xs text-gray-900 font-bold px-2 py-1 rounded">
               FEATURED CHALLENGE
@@ -286,7 +286,6 @@ export default function CookingChallengesPage() {
               Create amazing dishes using spring produce! Share your creations
               and win prizes from our sponsor FreshFarm Markets.
             </p>
-
             <div className="flex flex-wrap gap-4 my-4">
               <div>
                 <div className="text-blue-200 text-xs mb-1">Start Date</div>
@@ -310,7 +309,6 @@ export default function CookingChallengesPage() {
                 </div>
               </div>
             </div>
-
             <div className="flex space-x-3">
               <Button variant={"link"} className="text-white py-2 px-4">
                 Join Challenge
@@ -318,14 +316,16 @@ export default function CookingChallengesPage() {
               <Button className="py-2 px-4">Learn More</Button>
             </div>
           </div>
-          <div className="md:w-2/5">
-            <Image
-              height={300}
-              width={500}
-              src="/wooden-texture.jpg"
-              alt="Spring Seasonal Cooking Challenge"
-              className="object-cover"
-            />
+          <div className="md:w-2/5 h-full">
+            <div className="h-full md:h-64 lg:h-80">
+              <Image
+                height={300}
+                width={500}
+                src="/wooden-texture.jpg"
+                alt="Spring Seasonal Cooking Challenge"
+                className="object-cover w-full h-full"
+              />
+            </div>
           </div>
         </div>
       </div>

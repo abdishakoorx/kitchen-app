@@ -142,7 +142,7 @@ export default function NutritionTrackerPage() {
         </div>
       </div>
       
-      <div className="p-6 rounded-lg shadow mb-8">
+      <div className="p-6 rounded-lg border mb-8">
         <h3 className="text-lg font-medium mb-4">Recent Meals</h3>
         <div className="overflow-x-auto">
           <table className="w-full">

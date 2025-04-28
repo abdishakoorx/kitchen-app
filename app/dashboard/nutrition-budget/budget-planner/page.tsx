@@ -50,7 +50,7 @@ export default function BudgetPlannerPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">      
-      <div className="p-6 rounded-lg shadow mb-8">
+      <div className="p-6 rounded-lg border mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <h3 className="text-lg font-medium mb-2">Monthly Budget</h3>
@@ -83,7 +83,7 @@ export default function BudgetPlannerPage() {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div className="p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg border">
           <h3 className="text-lg font-medium mb-4">Budget by Category</h3>
           
           <div className="space-y-4">
@@ -110,7 +110,7 @@ export default function BudgetPlannerPage() {
           </div>
         </div>
         
-        <div className="p-6 rounded-lg shadow">
+        <div className="p-6 rounded-lg border">
           <h3 className="text-lg font-medium mb-4">Recent Transactions</h3>
           
           <div className="overflow-y-auto max-h-64">
@@ -140,7 +140,7 @@ export default function BudgetPlannerPage() {
         </div>
       </div>
       
-      <div className="p-6 rounded-lg shadow">
+      <div className="p-6 rounded-lg border">
         <h3 className="text-lg font-medium mb-4">Budget Tips</h3>
         
         <ul className="space-y-2">

@@ -66,17 +66,17 @@ export default function NutritionBudgetPage() {
       <div className="mt-10 p-6 rounded-lg">
         <h3 className="text-xl font-semibold mb-3">Weekly Summary</h3>
         <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1 p-4 rounded-md shadow-sm">
+          <div className="flex-1 p-4 rounded-md border">
             <p className="text-gray-500 text-sm">
               Estimated weekly grocery cost
             </p>
             <p className="text-2xl font-bold">$87.50</p>
           </div>
-          <div className="flex-1 p-4 rounded-md shadow-sm">
+          <div className="flex-1 p-4 rounded-md border">
             <p className="text-gray-500 text-sm">Average daily calories</p>
             <p className="text-2xl font-bold">2,150</p>
           </div>
-          <div className="flex-1 p-4 rounded-md shadow-sm">
+          <div className="flex-1 p-4 rounded-md border">
             <p className="text-gray-500 text-sm">Budget adherence</p>
             <p className="text-2xl font-bold text-green-600">94%</p>
           </div>

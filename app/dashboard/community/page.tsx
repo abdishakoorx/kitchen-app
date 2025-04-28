@@ -199,7 +199,7 @@ export default function CommunityPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredContent.map((content) => (
               <Link href={content.url} key={content.id}>
-                <div className="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="rounded-lg border overflow-hidden transition-shadow">
                   <div className="relative h-48">
                     <Image
                       height={400}
@@ -243,7 +243,7 @@ export default function CommunityPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Active Community Members */}
-          <div className="rounded-lg shadow-md p-6">
+          <div className="rounded-lg border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">Active Members</h2>
               <Link href="" className="text-blue-600 text-sm hover:underline">
@@ -280,7 +280,7 @@ export default function CommunityPage() {
           </div>
 
           {/* Upcoming Events */}
-          <div className="rounded-lg shadow-md p-6">
+          <div className="rounded-lg border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">Upcoming Events</h2>
               <Link href="" className="text-blue-600 text-sm hover:underline">
@@ -315,7 +315,7 @@ export default function CommunityPage() {
           </div>
 
           {/* Recent Activity */}
-          <div className="rounded-lg shadow-md p-6">
+          <div className="rounded-lg border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">Recent Activity</h2>
               <Link href="" className="text-blue-600 text-sm hover:underline">
