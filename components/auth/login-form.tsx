@@ -26,14 +26,16 @@ import { signIn } from "@/utils/auth-client";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
   const formSchema = z.object({
     email: z.string().email(),
@@ -67,7 +69,7 @@ export function LoginForm({
             toast.error(context.error.message);
           },
           onSuccess: () => {
-            router.replace("/dashboard")
+            router.replace(callbackUrl);
           },
         }
       );

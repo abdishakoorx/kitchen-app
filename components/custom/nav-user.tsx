@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   BadgeCheck,
   ChevronsUpDown,
@@ -26,22 +27,31 @@ import {
 import { signOut } from "@/utils/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 export function NavUser() {
+  const [isLoading, setIsLoading] = useState(false);
   const { isMobile } = useSidebar();
   const router = useRouter();
 
   async function onLogout() {
-    await signOut({
-      fetchOptions: {
-        onError(context) {
-          toast.error(context.error.message);
+    setIsLoading(true);
+    try {
+      await signOut({
+        fetchOptions: {
+          onError(context) {
+            toast.error(context.error.message);
+          },
+          onSuccess: () => {
+            router.replace("/");
+          },
         },
-        onSuccess: () => {
-          router.replace("/");
-        },
-      },
-    });
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -112,8 +122,16 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer" onClick={onLogout}>
-              <LogOut /> Logout
+            <DropdownMenuItem>
+              <Button
+                variant="outline"
+                className="cursor-pointer w-full bg-black text-white hover:text-white hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={onLogout}
+                disabled={isLoading}
+              >
+                <LogOut className="text-white" />{" "}
+                {isLoading ? "Logging out..." : "Logout"}
+              </Button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
