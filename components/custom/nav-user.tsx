@@ -23,9 +23,26 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { signOut } from "@/utils/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
+  const router = useRouter();
+
+  async function onLogout() {
+    await signOut({
+      fetchOptions: {
+        onError(context) {
+          toast.error(context.error.message);
+        },
+        onSuccess: () => {
+          router.replace("/");
+        },
+      },
+    });
+  }
 
   return (
     <SidebarMenu>
@@ -85,9 +102,7 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem
-                className="cursor-pointer"
-              >
+              <DropdownMenuItem className="cursor-pointer">
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
@@ -97,8 +112,8 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
-              <LogOut />
+            <DropdownMenuItem className="cursor-pointer" onClick={onLogout}>
+              <LogOut /> Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
