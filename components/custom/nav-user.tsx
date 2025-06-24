@@ -7,8 +7,9 @@ import {
   CreditCard,
   LogOut,
   Sparkles,
+  User2,
 } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,9 +29,12 @@ import { signOut } from "@/utils/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import { useSession } from "@/hooks/useSession";
 
 export function NavUser() {
   const [isLoading, setIsLoading] = useState(false);
+  const { session } = useSession();
+  const user = session?.user;
   const { isMobile } = useSidebar();
   const router = useRouter();
 
@@ -64,15 +68,17 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                {/* <AvatarImage
-                  src={user.user?.imageUrl || undefined}
-                  alt={user.user?.firstName || undefined}
-                /> */}
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarImage
+                  src={user?.image || "/avatar.webp"}
+                  alt={user?.name}
+                />
+                <AvatarFallback className="rounded-lg bg-secondary">
+                  <User2 />
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
-                  {/* {user.user?.firstName || undefined} */}
+                <span className="truncate font-mono font-bold">
+                  {user?.name || "User"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
@@ -87,18 +93,20 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  {/* <AvatarImage
-                    src={user.user?.imageUrl || undefined}
-                    alt={user.user?.fullName || undefined}
-                  /> */}
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage
+                    src={user?.image || "/avatar.webp"}
+                    alt={user?.name}
+                  />
+                  <AvatarFallback className="rounded-lg bg-secondary">
+                    <User2 />
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    {/* {user.user?.fullName || undefined} */}
+                  <span className="truncate font-mono font-bold">
+                    {user?.name || "User"}
                   </span>
-                  <span className="truncate text-xs">
-                    {/* {user.user?.primaryEmailAddress?.emailAddress || undefined} */}
+                  <span className="truncate text-xs font-mono">
+                    {user?.email || "User"}
                   </span>
                 </div>
               </div>
