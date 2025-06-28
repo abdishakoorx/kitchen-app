@@ -25,15 +25,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { signOut } from "@/utils/auth-client";
+import { signOut, useSession } from "@/utils/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import { useSession } from "@/hooks/useSession";
 
 export function NavUser() {
   const [isLoading, setIsLoading] = useState(false);
-  const { session } = useSession();
+  const { data: session } = useSession();
   const user = session?.user;
   const { isMobile } = useSidebar();
   const router = useRouter();
