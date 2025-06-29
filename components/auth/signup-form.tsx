@@ -77,10 +77,14 @@ export function SignupForm({
       await signUp.email(
         { name, email, password },
         {
-          onRequest: () => {},
-          onRespnse: () => {},
-          onError(context) {
-            toast.error(context.error.message);
+          onRequest: () => {
+            setIsLoading(true);
+          },
+          onResponse: () => {
+            setIsLoading(false);
+          },
+          onError() {
+            toast.error("Unable to create account. Please try again.");
           },
           onSuccess: () => {
             router.replace("/dashboard");
@@ -88,7 +92,7 @@ export function SignupForm({
         }
       );
     } catch (error) {
-      console.log(error);
+      console.log("Catch block called with:", error);
     } finally {
       setIsLoading(false);
     }
