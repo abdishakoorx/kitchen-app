@@ -91,15 +91,10 @@ export function NavUser() {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage
-                    src={user?.image || "/avatar.webp"}
-                    alt={user?.name}
-                  />
-                  <AvatarFallback className="rounded-lg bg-secondary">
-                    <User2 />
-                  </AvatarFallback>
-                </Avatar>
+                <div
+                  data-role={user?.role}
+                  className="size-6 animate-pulse rounded-full data-[role=USER]:bg-blue-700 data-[role=ADMIN]:bg-red-700"
+                />
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-mono font-bold">
                     {user?.name || "User"}
