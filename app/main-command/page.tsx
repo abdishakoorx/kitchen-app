@@ -1,6 +1,17 @@
+import { auth } from "@/utils/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
-function MainCommandDashboard() {
+export default async function MainCommandDashboard() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) redirect("/dashboard");
+
+  if (session.user?.role !== "ADMIN") redirect("/dashboard");
+  
   return (
     <div>
       <p>Reports</p>
@@ -9,5 +20,3 @@ function MainCommandDashboard() {
     </div>
   );
 }
-
-export default MainCommandDashboard;
