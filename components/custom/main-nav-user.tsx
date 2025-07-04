@@ -84,7 +84,7 @@ export function MainCommandNavUser() {
                   {user?.name || "Admin"}
                 </span>
                 <span className="truncate text-xs text-muted-foreground">
-                  Administrator
+                  {user?.role || "Admin"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />

@@ -95,11 +95,11 @@ export function NavUser() {
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
+                <span className="truncate font-mono font-bold">
                   {user?.name || "User"}
                 </span>
                 <span className="truncate text-xs text-muted-foreground">
-                  Home Chef
+                  {user?.role || "User"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4 text-muted-foreground" />
@@ -117,7 +117,7 @@ export function NavUser() {
                   <div className="absolute inset-0 rounded-full animate-pulse bg-white/20" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">
+                  <span className="truncate font-mono font-bold">
                     {user?.name || "User"}
                   </span>
                   <span className="truncate text-xs text-muted-foreground">
@@ -155,7 +155,11 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem className="cursor-pointer">
                 <Sparkles className="text-yellow-500" />
-                Upgrade to Pro
+                {user?.role === "ADMIN" ? (
+                  <Link href="/main-command">Main Command</Link>
+                ) : (
+                  "Upgrade to Pro"
+                )}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
