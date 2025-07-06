@@ -6,12 +6,9 @@ import { admin } from "better-auth/plugins/admin";
 import { db } from "@/db";
 import { schema } from "@/db/Schema";
 import { ac, roles } from "./permissions";
+import { userRole } from "@/lib/constants";
 
-// Reference for role
-export const userRole = {
-  USER: "USER",
-  ADMIN: "ADMIN",
-} as const;
+
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
