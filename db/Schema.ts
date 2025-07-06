@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, boolean, pgEnum } from "drizzle-orm/pg-core";
 
-export const roleEnum = pgEnum("role", ["USER", "ADMIN"]);
+export const userRoleEnum = pgEnum("user_role", ["USER", "ADMIN"]);
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -10,7 +10,7 @@ export const user = pgTable("user", {
     .$defaultFn(() => false)
     .notNull(),
   image: text("image"),
-  role: roleEnum("role")
+  role: userRoleEnum("role")
     .$default(() => "USER")
     .notNull(),
   createdAt: timestamp("created_at")
@@ -19,6 +19,9 @@ export const user = pgTable("user", {
   updatedAt: timestamp("updated_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
+  banned: boolean("banned"),
+  banReason: text("ban_reason"),
+  banExpires: timestamp("ban_expires"),
 });
 
 export const session = pgTable("session", {
@@ -28,6 +31,7 @@ export const session = pgTable("session", {
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
   ipAddress: text("ip_address"),
+  impersonatedBy: text("impersonated_by"),
   userAgent: text("user_agent"),
   userId: text("user_id")
     .notNull()
@@ -65,4 +69,4 @@ export const verification = pgTable("verification", {
   ),
 });
 
-export const schema = { user, roleEnum, session, account, verification };
+export const schema = { user, userRoleEnum, session, account, verification };
