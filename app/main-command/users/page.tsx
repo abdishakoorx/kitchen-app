@@ -11,22 +11,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { db } from "@/db";
-import { user } from "@/db/Schema";
 import { auth } from "@/utils/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function AdminUsersPage() {
+  const headerList = await headers();
   const session = await auth.api.getSession({
-    headers: await headers(),
+    headers: headerList,
   });
 
   if (!session) redirect("/login");
   if (session.user?.role !== "ADMIN") redirect("/dashboard");
 
   // Fetch all users from database
-  const users = await db.select().from(user);
+  const { users } = await auth.api.listUsers({
+    headers: headerList,
+    query: {
+      sortBy: "name",
+    },
+  });
+
+  const sortedUsers = users.sort((a, b) => {
+    if (a.role === "ADMIN" && b.role !== "ADMIN") {
+      return -1;
+    }
+    if (a.role !== "ADMIN" && b.role === "ADMIN") {
+      return 1;
+    }
+    return 0;
+  });
 
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat("en-US", {
@@ -55,7 +69,7 @@ export default async function AdminUsersPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((userData) => (
+          {sortedUsers.map((userData) => (
             <TableRow key={userData.id}>
               <TableCell>
                 <div className="text-sm text-muted-foreground">
