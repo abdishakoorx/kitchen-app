@@ -1,15 +1,13 @@
 "use server";
 
-import { db } from "@/db";
-import { user } from "@/db/Schema";
 import { auth } from "@/utils/auth";
-import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function deleteUserAction({ userId }: { userId: string }) {
+  const headerList = await headers();
   const session = await auth.api.getSession({
-    headers: await headers(),
+    headers: headerList,
   });
 
   if (!session) redirect("/login");
@@ -17,9 +15,14 @@ export async function deleteUserAction({ userId }: { userId: string }) {
   if (session.user.id === userId) throw new Error("UNAUTHORIZED");
 
   try {
-    await db.delete(user).where(eq(user.id, userId));
-    return { error: null };
+    await auth.api.removeUser({
+      headers: headerList,
+      body: {
+        userId: userId,
+      },
+    });
 
+    return { error: null };
   } catch (error) {
     if (error instanceof Error) {
       return { error: error.message };
