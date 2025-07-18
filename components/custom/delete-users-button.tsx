@@ -19,9 +19,13 @@ import { useRouter } from "next/navigation";
 
 interface DeleteUsersButtonProps {
   userId: string;
+  userName: string;
 }
 
-export const DeleteUsersButton = ({ userId }: DeleteUsersButtonProps) => {
+export const DeleteUsersButton = ({
+  userId,
+  userName,
+}: DeleteUsersButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -32,7 +36,9 @@ export const DeleteUsersButton = ({ userId }: DeleteUsersButtonProps) => {
     if (error) {
       toast.error(error);
     } else {
-      toast.success("User deleted successfully");
+      toast.success("User deleted successfully", {
+        description: `User ${userName} has been deleted`,
+      });
     }
     setIsLoading(false);
     setIsOpen(false);
@@ -51,18 +57,18 @@ export const DeleteUsersButton = ({ userId }: DeleteUsersButtonProps) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the user
-            and remove their data from our servers.
+            This action cannot be undone. This will permanently delete{" "}
+            <strong>{userName}</strong> and remove their data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="bg-secondary text-white hover:bg-secondary/90">
+          <AlertDialogCancel className="bg-destructive text-white border-none hover:bg-destructive/90">
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={deleteUser}
             disabled={isLoading}
-            className="bg-destructive hover:bg-destructive/90"
+            className="bg-secondary text-white hover:bg-secondary/90"
           >
             {isLoading ? "Deleting..." : "Delete"}
           </AlertDialogAction>
