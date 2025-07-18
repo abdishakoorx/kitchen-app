@@ -10,8 +10,8 @@ export default async function MainCommandDashboard() {
 
   if (!session) redirect("/dashboard");
 
-  if (session.user?.role !== "ADMIN") redirect("/dashboard");
-  
+  if (session.user?.role === "USER") redirect("/dashboard");
+
   return (
     <div>
       <p>Reports</p>
