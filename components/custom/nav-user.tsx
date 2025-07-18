@@ -155,10 +155,10 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem className="cursor-pointer">
                 <Sparkles className="text-yellow-500" />
-                {user?.role === "ADMIN" ? (
-                  <Link href="/main-command">Main Command</Link>
-                ) : (
+                {user?.role === "USER" ? (
                   "Upgrade to Pro"
+                ) : (
+                  <Link href="/main-command">Main Command</Link>
                 )}
               </DropdownMenuItem>
             </DropdownMenuGroup>
