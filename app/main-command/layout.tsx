@@ -1,9 +1,9 @@
 import React from "react";
-import { AppSidebar } from "@/components/sidebars/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { HeaderSection } from "@/components/custom/header-section";
 import { DashboardProviders } from "@/components/providers/dashboardProvider";
+import { MainCommandAppSidebar } from "@/components/sidebars/main-app-sidebar";
 
 export default function DashboardLayout({
   children,
@@ -12,7 +12,7 @@ export default function DashboardLayout({
 }) {
   return (
     <DashboardProviders>
-      <AppSidebar />
+      <MainCommandAppSidebar />
       <SidebarInset className="border-b">
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4 w-full">

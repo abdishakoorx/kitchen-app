@@ -10,7 +10,6 @@ import {
   Refrigerator,
   CalendarDays,
 } from "lucide-react";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,20 +46,7 @@ const Header = () => {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:block">
-            <SignedOut>
-              <SignInButton mode="modal">
-                <Button className="cursor-pointer">Get Started Free</Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-10 h-10",
-                  },
-                }}
-              />
-            </SignedIn>
+            <Button className="cursor-pointer">Get Started Free</Button>
           </div>
 
           {/* Mobile Menu Toggle */}
