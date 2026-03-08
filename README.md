@@ -103,10 +103,4 @@ We regularly update our platform with new features and improvements. Enable noti
 ## Note
 Administrative features and backend controls are restricted to authorized personnel only. For technical support or business inquiries, please contact our support team.
 
-## License
 
-[Insert License Information]
-
----
-
-Made with ❤️ by the Kitchen App Team
